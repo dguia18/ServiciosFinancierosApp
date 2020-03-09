@@ -14,37 +14,37 @@ namespace ServiciosFinancieros
             this.ciudad = ciudad;
             this.nombreDeCuenta = nombreDeCuenta;
             this.numeroDeCuenta = numeroDeCuenta;
-            this.transaccions = new System.Collections.Generic.List<Transaccion>();
+            this.transacciones = new System.Collections.Generic.List<Transaccion>();
         }
 
         public string Consignar(Consignacion consignacion)
         {                        
-            return isPrimeraConsignacion(consignacion);
+            return IsPrimeraConsignacion(consignacion);
         }
 
-        private string isPrimeraConsignacion(Consignacion consignacion)
+        private string IsPrimeraConsignacion(Consignacion consignacion)
         {
             string mensaje;
             if (primeraConsignacion)
             {
-                mensaje = isMontoConsignacionInicialValido(consignacion);
+                mensaje = IsMontoConsignacionInicialValido(consignacion);
             }
             else
             {
-                mensaje = isMontoNoNegativo(consignacion);
+                mensaje = IsMontoNoNegativo(consignacion);
             }
 
             return mensaje;
         }
 
-        private string isMontoConsignacionInicialValido(Consignacion consignacion)
+        private string IsMontoConsignacionInicialValido(Consignacion consignacion)
         {
             string mensaje;
-            if (consignacion.getMonto() >= VALOR_CONSIGNACION_INICIAL)
+            if (consignacion.GetMonto() >= VALOR_CONSIGNACION_INICIAL)
             {
                 this.primeraConsignacion = true;
-                validarCiudad(consignacion);
-                ejecutarConsignacion(consignacion);
+                ValidarCiudad(consignacion);
+                EjecutarConsignacion(consignacion);
                 mensaje = $"Su Nuevo Saldo es de ${this.saldo} pesos";
             }
             else
@@ -57,13 +57,13 @@ namespace ServiciosFinancieros
             return mensaje;
         }
 
-        private string isMontoNoNegativo(Consignacion consignacion)
+        private string IsMontoNoNegativo(Consignacion consignacion)
         {
             string mensaje;
-            if (consignacion.getMonto() > 0)
+            if (consignacion.GetMonto() > 0)
             {
-                this.validarCiudad(consignacion);
-                ejecutarConsignacion(consignacion);
+                this.ValidarCiudad(consignacion);
+                EjecutarConsignacion(consignacion);
                 mensaje = $"Su Nuevo Saldo es de ${this.saldo} pesos";
             }
             else
@@ -74,21 +74,21 @@ namespace ServiciosFinancieros
             return mensaje;
         }
 
-        private void validarCiudad(Consignacion consignacion)
+        private void ValidarCiudad(Consignacion consignacion)
         {
-            if (!consignacion.getCiudad().Equals(this.ciudad))
+            if (!consignacion.GetCiudad().Equals(this.ciudad))
             {
-                consignacion.setMonto(consignacion.getMonto() - DESCUENTO_POR_SUCURSAL_EN_OTRA_CIUDAD);
+                consignacion.SetMonto(consignacion.GetMonto() - DESCUENTO_POR_SUCURSAL_EN_OTRA_CIUDAD);
             }
         }
 
-        private void ejecutarConsignacion(Consignacion consignacion)
+        private void EjecutarConsignacion(Consignacion consignacion)
         {
-            this.saldo += consignacion.getMonto();
-            this.transaccions.Add(consignacion);
+            this.saldo += consignacion.GetMonto();
+            this.transacciones.Add(consignacion);
         }        
 
-        public void setIsPrimeraConsignacion(bool isPrimeraConsignacion)
+        public void SetIsPrimeraConsignacion(bool isPrimeraConsignacion)
         {
             this.primeraConsignacion = isPrimeraConsignacion;
         }
@@ -101,9 +101,6 @@ namespace ServiciosFinancieros
         {
             throw new NotImplementedException();
         }
-        public string QueSoy()
-        {
-            return "soy cuenta de Ahorros";
-        }
+        public string QueSoy => "soy cuenta de Ahorros";
     }
 }

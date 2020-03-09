@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace ServiciosFinancieros
 {
@@ -15,19 +13,19 @@ namespace ServiciosFinancieros
             
         }
 
-        public decimal getMonto()
+        public decimal GetMonto()
         {
             return this.monto;
         }
-        public void setMonto(decimal monto)
+        public void SetMonto(decimal monto)
         {
             this.monto = monto;
         }
-        public string getCiudad()
+        public string GetCiudad()
         {
             return this.ciudad;
         }
-        public void setCiudad(string ciudad)
+        public void SetCiudad(string ciudad)
         {
             this.ciudad = ciudad;
         }        

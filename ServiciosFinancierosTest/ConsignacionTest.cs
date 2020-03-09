@@ -7,6 +7,7 @@ namespace ServiciosFinancierosTest
         [SetUp]
         public void Setup()
         {
+            // Method intentionally left empty.
         }
 
         [Test]
@@ -29,10 +30,10 @@ namespace ServiciosFinancierosTest
             string ciudad = "Valledupar";
             CuentaDeAhorro cuentaDeAhorro = new CuentaDeAhorro(numeroDeCuenta, nombreDeCuenta, ciudad);
             Banco servicios = new Banco(cuentaDeAhorro);
-            cuentaDeAhorro.setIsPrimeraConsignacion(true);
+            cuentaDeAhorro.SetIsPrimeraConsignacion(true);
             string respuesta = servicios.Consignar(new Consignacion(50000, "Valledupar"));
 
-            Assert.AreEqual($"Su Nuevo Saldo es de ${cuentaDeAhorro.getSaldo()} pesos", respuesta);
+            Assert.AreEqual($"Su Nuevo Saldo es de ${cuentaDeAhorro.GetSaldo()} pesos", respuesta);
         }
         [Test]
         public void ConsignacionInicialInCorrecta()
@@ -42,12 +43,12 @@ namespace ServiciosFinancierosTest
             string ciudad = "Valledupar";
             CuentaDeAhorro cuentaDeAhorro = new CuentaDeAhorro(numeroDeCuenta, nombreDeCuenta, ciudad);
             Banco servicios = new Banco(cuentaDeAhorro);
-            cuentaDeAhorro.setIsPrimeraConsignacion(true);
+            cuentaDeAhorro.SetIsPrimeraConsignacion(true);
             string respuesta = servicios.Consignar(new Consignacion(49950, "Valledupar"));
 
             Assert.AreEqual("El valor mínimo de la primera consignación debe ser" +
                                 $"de ${50000} mil pesos. " +
-                                $"Su nuevo saldo es ${cuentaDeAhorro.getSaldo()} pesos", respuesta);
+                                $"Su nuevo saldo es ${cuentaDeAhorro.GetSaldo()} pesos", respuesta);
         }
         [Test]
         public void ConsignacionPosteriorALaInicialCorrecta()
@@ -57,10 +58,10 @@ namespace ServiciosFinancierosTest
             string ciudad = "Valledupar";
             CuentaDeAhorro cuentaDeAhorro = new CuentaDeAhorro(numeroDeCuenta, nombreDeCuenta, ciudad);
             Banco servicios = new Banco(cuentaDeAhorro);
-            cuentaDeAhorro.setSaldo(30000);
+            cuentaDeAhorro.SetSaldo(30000);
             string respuesta = servicios.Consignar(new Consignacion(49950, "Valledupar"));
 
-            Assert.AreEqual($"Su Nuevo Saldo es de ${cuentaDeAhorro.getSaldo()} pesos", respuesta);
+            Assert.AreEqual($"Su Nuevo Saldo es de ${cuentaDeAhorro.GetSaldo()} pesos", respuesta);
         }
         [Test]
         public void ConsignacionPosteriorALaInicialInCorrecta()
@@ -70,10 +71,10 @@ namespace ServiciosFinancierosTest
             string ciudad = "Bogota";
             CuentaDeAhorro cuentaDeAhorro = new CuentaDeAhorro(numeroDeCuenta, nombreDeCuenta, ciudad);
             Banco servicios = new Banco(cuentaDeAhorro);
-            cuentaDeAhorro.setSaldo(30000);
+            cuentaDeAhorro.SetSaldo(30000);
             string respuesta = servicios.Consignar(new Consignacion(49950, "Valledupar"));
 
-            Assert.AreEqual($"Su Nuevo Saldo es de ${cuentaDeAhorro.getSaldo()} pesos", respuesta);
+            Assert.AreEqual($"Su Nuevo Saldo es de ${cuentaDeAhorro.GetSaldo()} pesos", respuesta);
         }
     }
 }
